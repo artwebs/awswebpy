@@ -14,7 +14,6 @@ from conf.setting import IMAGES_FILE_PATH
 from conf.setting import JS_FILE_PATH
 TEMPLATE_PATH.insert(0, CUSTOM_TPL_PATH)
 sys.path.insert(0, abspath(dirname(__file__)))
-
 root = Bottle()
 
 root.mount('/movie', __import__('movie').app)
