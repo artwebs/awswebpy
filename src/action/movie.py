@@ -17,7 +17,7 @@ app = Bottle()
 model=SqliteModel(DATABASE['connstr'])
 action=ActionJson()
 
-@app.route('/test',method=['POST','GET'])
+@app.route('/movie',method=['POST','GET'])
 def movie():
     f=BinMap()
     f.put("id","")
