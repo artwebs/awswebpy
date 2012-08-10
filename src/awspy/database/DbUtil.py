@@ -71,7 +71,7 @@ class DbUtil(object):
                 
             else:
                 fs+=field+","
-                vs+="'"+fieldMap.getvalue(i)+"',"
+                vs+="'"+fieldMap.getvalue(num=i)+"',"
         if len(fs)>0:
             fs=fs[0:len(fs)-1]
         if len(vs)>0:
