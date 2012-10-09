@@ -2,8 +2,8 @@
 import MySQLdb
 from Db import Db
 from DbModel import DbModel
-from artsys.object.LHBMap import LHBMap
-class MySqlModel(Db):
+from awspy.object.BinMap import BinMap
+class MySqlModel(DbModel):
     '''
     classdocs
     '''
@@ -17,20 +17,21 @@ class MySqlModel(Db):
         Db.__init__(self,connstr,host,user,passwd,db)
         
     def getCursor(self):
-        self.conn= MySQLdb.connect(self.host,self.user,self.passwd,self.db)
-        self.cursor = self.conn.cursor()    
+        self.conn= MySQLdb.connect(self.host,self.user,self.passwd,self.db,charset="utf8")
+        self.cursor = self.conn.cursor()   
+#        self.runExecute("set names 'utf8'");
         
 if __name__=="__main__":
-    db=MySqlModel(host='localhost', user='root',passwd='windows123',db='jjydoa')
-    model=DbModel(db,"t_count")
-    f=LHBMap();
-    f.put("countname.string","newid1")
-    f.put("countcontent.string","2")
+    db=MySqlModel(host='localhost', user='root',passwd='windows123',db='psdemo')
+#    model=DbModel(db,"users")
+    f=BinMap();
+    f.put("userid","newid1")
+    f.put("name","2")
 #    print model.getInsertResult(f)
 #    print model.getSelectResult(f)
 #    
 #    print model.getUpdateResult(f, "countname='newid1'")
-    print (model.getSelectResult(f)).getitem()
+    print (db.getSelectResult(f,'1=1','users')).getitem()
 
 #    print model.getDeleteResult("countname='newid1'")
 #    print model.getSelectResult(f)
