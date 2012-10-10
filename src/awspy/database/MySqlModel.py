@@ -13,11 +13,14 @@ class MySqlModel(DbModel):
         '''
         Constructor
         '''
-    def __init__(self,connstr=None,host=None,user=None,passwd=None,db=None):
-        Db.__init__(self,connstr,host,user,passwd,db)
+    def __init__(self,connstr=None,host=None,user=None,passwd=None,db=None,port=None):
+        Db.__init__(self,connstr,host,user,passwd,db,port)
         
     def getCursor(self):
-        self.conn= MySQLdb.connect(self.host,self.user,self.passwd,self.db,charset="utf8")
+        if self.port is not None:
+            self.conn= MySQLdb.connect(host=self.host,user=self.user,passwd=self.passwd,db=self.db,port=self.port,charset="utf8")
+        else:
+            self.conn= MySQLdb.connect(host=self.host,user=self.user,passwd=self.passwd,db=self.db,charset="utf8")
         self.cursor = self.conn.cursor()   
 #        self.runExecute("set names 'utf8'");
         

@@ -2,7 +2,7 @@
 import re
 from awspy.object.BinMap import BinMap 
 from awspy.object.BinList import BinList 
-class ActionJson(object):
+class ActionJson(Action):
     '''
     classdocs
     '''

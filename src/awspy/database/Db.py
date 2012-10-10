@@ -11,12 +11,13 @@ class Db(object):
     db=None
     
 
-    def __init__(self,connstr=None,host=None,user=None,passwd=None,db=None):
+    def __init__(self,connstr=None,host=None,user=None,passwd=None,db=None,port=None):
         self.connstr=connstr
         self.host=host
         self.user=user
         self.passwd=passwd
         self.db=db
+        self.port=port
         
     def getCursor(self):
         pass
