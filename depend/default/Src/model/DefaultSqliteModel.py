@@ -1,8 +1,9 @@
+from awspy.database import SqliteModel
+
 __author__ = 'artwebs'
-from awspy.object import BinMap,BinMap,BinList
-from awspy.database.SqliteModel import SqliteModel
+from awspy.object import BinMap, BinList
 from conf.setting import DATABASE
-import json
+
 
 class DefaultSqliteModel(object):
     model=SqliteModel(DATABASE['connstr'])
@@ -20,8 +21,8 @@ class ArgsModel(DefaultSqliteModel):
         '''
 
     def getVersionApksize(self):
-        rs=BinMap()
-        inpara=BinMap()
+        rs= BinMap()
+        inpara= BinMap()
         inpara.put('args_id','')
         inpara.put('args_content','')
         rslist=self.model.getSelectResult(inpara, "args_id='version' or args_id='apk_size'",'args')
@@ -42,13 +43,13 @@ class UserModel(object):
         '''
 
     def verfiyUser(self,user_id,user_pwd,imei,imsi):
-        rs=BinMap()
-        inpara=BinMap()
+        rs= BinMap()
+        inpara= BinMap()
         inpara.put('user_id','')
         inpara.put('user_pwd','')
         inpara.put('imei','')
         inpara.put('imsi','')
-        rslist=BinList()
+        rslist= BinList()
         rslist=self.model.getSelectResult(inpara, "user_id='"+user_id+"' and user_pwd='"+user_pwd+"'",'users')
         if rslist.size()==1:
             if (rslist.getvalue(0,'imei')=="" and rslist.getvalue(0,'imsi')=="") or (rslist.getvalue(0,'imei')==None and rslist.getvalue(0,'imsi')==None):
@@ -72,13 +73,13 @@ class UserModel(object):
         return rs;
 
     def changPassWord(self,user_id,oldpwd,newpwd):
-        inpara=BinMap()
+        inpara= BinMap()
         inpara.put('user_id','')
         inpara.put('user_pwd','')
         inpara.put('imei','')
         inpara.put('imsi','')
-        rslist=BinList()
-        rs=BinMap()
+        rslist= BinList()
+        rs= BinMap()
         rslist=self.model.getSelectResult(inpara, "user_id='"+user_id+"' and user_pwd='"+oldpwd+"'",'users')
         if rslist.size()==1:
             inpara.clear()

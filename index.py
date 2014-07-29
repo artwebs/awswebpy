@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
 from depend.bottle import debug, run
-import os
-import shutil
-from awspy.utils.Utils import *
 from awspy.utils.FileUtils import *
 
 if __name__ == '__main__':

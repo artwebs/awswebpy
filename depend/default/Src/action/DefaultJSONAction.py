@@ -1,6 +1,9 @@
 __author__ = 'artwebs'
+from awspy.object.BinList import *
+from awspy.object.BinMap import *
 from Src.model.DefaultSqliteModel import *
 from depend.bottle import request
+import json
 
 class DefaultJSONAction(object):
     def login(self):
@@ -20,7 +23,7 @@ class DefaultJSONAction(object):
         login_name=request.forms.get('login_name')
         oldpwd=request.forms.get('oldpwd')
         newpwd=request.forms.get('newpwd')
-        rs=BinMap()
+        rs= BinMap()
         if oldpwd==newpwd :
             rs.put('code','0')
             rs.put('message','新旧密码相同')
