@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../ArtPyWeb/.idea/ArtPyWeb.iml" filepath="$PROJECT_DIR$/../ArtPyWeb/.idea/ArtPyWeb.iml" />
       <module fileurl="file://$PROJECT_DIR$/../awspy/.idea/awspy.iml" filepath="$PROJECT_DIR$/../awspy/.idea/awspy.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/awswebpy.iml" filepath="$PROJECT_DIR$/.idea/awswebpy.iml" />
     </modules>
