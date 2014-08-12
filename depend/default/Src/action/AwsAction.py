@@ -4,10 +4,10 @@ import os
 import time
 from depend.bottle import Bottle,get,post,request
 from conf.setting import UPLOAD_FILE_PATH
-from Src.model.AWSDataModel import AWSDataModel
+from Src.model.AWSModel import AWSModel
 class AwsAction(object):
     def defaultExec(self,fun):
-        obj=AWSDataModel()
+        obj=AWSModel()
         return obj.execFun(fun,self.getParam())
 
     def uploadImage(self):
