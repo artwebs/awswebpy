@@ -10,6 +10,7 @@ from conf.setting import CUSTOM_TPL_PATH
 from conf.setting import STATIC_FILE_PATH
 from conf.setting import IMAGES_FILE_PATH
 from conf.setting import JS_FILE_PATH
+from conf.setting import CSS_FILE_PATH
 from conf.setting import UPLOAD_FILE_PATH
 from depend.beaker.middleware import SessionMiddleware
 TEMPLATE_PATH.insert(0, CUSTOM_TPL_PATH)
@@ -17,6 +18,7 @@ sys.path.insert(0, abspath(dirname(__file__)))
 
 
 root = Bottle()
+
 
 
 
@@ -53,6 +55,14 @@ def js(filename):
 def js(path):
     return static_file(path, root=JS_FILE_PATH)
 
+@root.route('/css/<filename>')
+def css(filename):
+    return static_file(filename, root=CSS_FILE_PATH)
+
+@root.route('/css/<path:path>')
+def js(path):
+    return static_file(path, root=CSS_FILE_PATH)
+
 @root.route('/center')
 def handel_redirect():
     return redirect(request.path+'/')
@@ -63,7 +73,7 @@ def handel_redirect():
 # http://localhost:8081/Aws/validate_user?a=12&b=1233
 # http://localhost:8081/Aws/aws_test?a=12&b=1233
 # http://localhost:8081/<action:re:[A-Z][a-z]+>/<method:re:[a-z]+>
-@root.route('/<action:re:[A-Z]\w+>/<method:re:[a-z_\d]+>',method=['post','get'])
+@root.route('/<action:re:[A-Z]\w+>/<method:re:\w+>',method=['post','get'])
 def action(action,method):
     action+="Action"
     __import__(action)

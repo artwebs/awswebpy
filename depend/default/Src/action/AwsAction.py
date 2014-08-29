@@ -5,10 +5,13 @@ import time
 from depend.bottle import Bottle,get,post,request
 from conf.setting import UPLOAD_FILE_PATH
 from Src.model.AWSModel import AWSModel
+import json
+import inspect
+
 class AwsAction(object):
     def defaultExec(self,fun):
         obj=AWSModel()
-        return obj.execFun(fun,self.getParam())
+        return obj.execFun(fun,self.getParamToJson())
 
     def uploadImage(self):
          upload = request.files.get('upload')
@@ -20,7 +23,7 @@ class AwsAction(object):
              return 'File extension not allowed.'
          index=0
          while(True):
-             fileName=time.strftime('%Y%m%d%H%M',time.localtime(time.time()))+'_'+str(index)+'.'+ext
+             fileName=time.strftime('%Y%m%d%H%M',time.localtime(time.time()))+'_'+str(index)+ext
              save_path = uppath+'/'+fileName
              if os.path.exists(save_path):
                 index=index+1
@@ -29,10 +32,14 @@ class AwsAction(object):
          upload.save(save_path) # appends upload.filename automatically
          return fileName
 
+    def getParamToJson(self):
+        return json.dumps(self.getParam())
+
     def getParam(self):
         cmd=request.POST.get('cmd')
         if cmd is None :
             cmd=request.GET.get('cmd')
+
         if cmd is None :
             poskey=request.POST.keys()
             getkey=request.GET.keys()
@@ -42,5 +49,20 @@ class AwsAction(object):
                 rsdic[item]=request.POST.get(item)
             for item in getkey:
                 rsdic[item]=request.GET.get(item)
-            cmd=json.dumps(rsdic)
-        return cmd
+            return  rsdic
+        else:
+            import json
+            # return cmd
+            return json.loads(cmd)
+
+
+    def getCurFunName(self):
+        return inspect.stack()[1][3]
+
+    def getTplName(self,fun=None):
+        if fun is not None:
+            return "%s_%s"%(self.__class__.__name__.replace("Action",""),fun)
+        else:
+            return self.__class__.__name__.replace("Action","")
+
+

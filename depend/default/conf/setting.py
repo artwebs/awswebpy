@@ -14,10 +14,10 @@ logging.basicConfig(level=logging.INFO,
 
 DATABASE = {
     'connstr' : abspath(join(dirname(__file__), "../data/awsdatabase.db")),
-    'host' : 'test_b',
-    'user' : 'dantezhu',
-    'passwd' : '',
-    'db' : 'localhost',
+    'host' : '127.0.0.1',
+    'user' : 'postgres',
+    'passwd' : 'windows123',
+    'db' : 'awsweb',
 }
 
 #网站根域名
@@ -37,4 +37,5 @@ CUSTOM_TPL_PATH = abspath(join(dirname(__file__), "../WebContent/views/"))
 STATIC_FILE_PATH = abspath(join(dirname(__file__), "../WebContent/static/"))
 IMAGES_FILE_PATH = abspath(join(dirname(__file__), "../WebContent/images/"))
 JS_FILE_PATH = abspath(join(dirname(__file__), "../WebContent/js/"))
+CSS_FILE_PATH = abspath(join(dirname(__file__), "../WebContent/css/"))
 UPLOAD_FILE_PATH = abspath(join(dirname(__file__), "../WebContent/upload/"))

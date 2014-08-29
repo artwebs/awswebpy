@@ -11,5 +11,7 @@ class AWSModel(object):
     def execFun(self,fun,str):
         f= BinMap()
         f.put("ojson","")
-        rs=self.db.getSelectResult(f,'1=1','aws_entrance(\''+fun+'\',\''+str+'\')')
-        return json.loads(rs.getvalue(0,"ojson"))
+        rs=self.db.callproc("aws_entrance",[fun,str],f)
+        rs=rs.getvalue(0,"ojson")
+        print(rs)
+        return json.loads(rs)
