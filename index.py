@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from depend.bottle import debug, run
-from awspy.utils.FileUtils import *
+from awspy.Utils.FileUtils import *
 
 if __name__ == '__main__':
     if not os.path.exists("Src"):

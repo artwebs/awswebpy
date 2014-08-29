@@ -3,7 +3,7 @@
 import sys
 import os
 from os.path import abspath, dirname
-from awspy.utils.Utils import *
+from awspy.Utils.Utils import *
 from depend.bottle import Bottle,get,post,debug,run,redirect,static_file,request,error,route
 from depend.bottle import TEMPLATE_PATH
 from conf.setting import CUSTOM_TPL_PATH
