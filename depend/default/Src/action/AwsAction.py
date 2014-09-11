@@ -61,8 +61,8 @@ class AwsAction(object):
 
     def getTplName(self,fun=None):
         if fun is not None:
-            return "%s_%s"%(self.__class__.__name__.replace("Action",""),fun)
+            return "%s_%s"%(self.__class__.__name__.replace("Action","").lower(),fun)
         else:
-            return self.__class__.__name__.replace("Action","")
+            return self.__class__.__name__.replace("Action","").lower()
 
 
